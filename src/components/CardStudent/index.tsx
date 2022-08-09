@@ -1,12 +1,27 @@
 import { NotePencil, Trash } from "phosphor-react";
+import { useStudents } from "../../hooks/useStudents";
 
 interface CardStudentProps {
+  id: string;
   name: string;
   cpf: string;
   email: string;
+  onOpenEditStudentModal: (id: string) => void;
 }
 
-export function CardStudent({ name, cpf, email }: CardStudentProps) {
+export function CardStudent({
+  id,
+  name,
+  cpf,
+  email,
+  onOpenEditStudentModal
+}: CardStudentProps) {
+  const { deleteStudent } = useStudents();
+
+  function handleDeleteStudent(selectedId: string) {
+    deleteStudent(selectedId);
+  }
+
   return (
     <div className="m-2 rounded-md p-4 bg-gray-800 flex flex-col min-w-[300px]">
       <header className="flex gap-2">
@@ -27,10 +42,10 @@ export function CardStudent({ name, cpf, email }: CardStudentProps) {
         </div>
 
         <div className="flex items-center justify-center flex-row gap-2">
-          <button>
+          <button onClick={() => onOpenEditStudentModal(id)}>
             <NotePencil size={24} />
           </button>
-          <button>
+          <button onClick={() => handleDeleteStudent(id)}>
             <Trash size={24} />
           </button>
         </div>

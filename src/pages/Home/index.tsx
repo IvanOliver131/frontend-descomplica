@@ -1,26 +1,31 @@
-import { SmileySad } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { SmileySad, Student } from "phosphor-react";
+import { useState } from "react";
 import { CardStudent } from "../../components/CardStudent";
 import { Header } from "../../components/Header";
+import { ModalStudent } from "../../components/Modal";
 import { Searchbar } from "../../components/Searchbar";
+import { useStudents } from "../../hooks/useStudents";
 
 interface Student {
+  id: string;
   name: string;
   cpf: string;
   email: string;
 }
 
 export function Home() {
-  const [students, setStudents] = useState<Student[]>([]);
+  const { students } = useStudents();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [studentId, setStudentId] = useState("");
 
-  useEffect(() => {
-    const student = {
-      name: "Ivan",
-      cpf: "136.070.106-09",
-      email: "ivanoliver131@gmail.com"
-    };
-    setStudents([student]);
-  }, []);
+  function handleCloseStudentModal() {
+    setModalOpen(false);
+  }
+
+  function handleOpenStudentModal(studentId: string) {
+    setStudentId(studentId);
+    setModalOpen(true);
+  }
 
   return (
     <div className="flex flex-col">
@@ -39,16 +44,24 @@ export function Home() {
             {students.map((student: Student) => {
               return (
                 <CardStudent
-                  key={student.cpf}
+                  key={student.id}
+                  id={student.id}
                   name={student.name}
                   cpf={student.cpf}
                   email={student.email}
+                  onOpenEditStudentModal={handleOpenStudentModal}
                 />
               );
             })}
           </div>
         )}
       </div>
+
+      <ModalStudent
+        isOpen={modalOpen}
+        id={studentId}
+        onRequestClose={handleCloseStudentModal}
+      />
     </div>
   );
 }
