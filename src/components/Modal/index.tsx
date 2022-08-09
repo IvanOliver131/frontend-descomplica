@@ -56,14 +56,15 @@ export function ModalStudent({ isOpen, id, onRequestClose }: ModalProps) {
   return (
     <Modal
       isOpen={isOpen}
+      ariaHideApp={false}
       onRequestClose={onRequestClose}
-      overlayClassName="react-modal-overlay"
-      className="react-modal-content"
+      overlayClassName="bg-black-rgba fixed top-0 bottom-0 right-0 left-0 flex items-center justify-center"
+      className="w-full max-w-[560px] bg-[#f0f2f5] p-14 relative rounded-md"
     >
       <button
         type="button"
         onClick={onRequestClose}
-        className="react-modal-close"
+        className="absolute right-6 top-6 border-spacing-0 bg-transparent hover:filter brightness-50"
       >
         <img src={closeImg} alt="Fechar modal" />
       </button>
