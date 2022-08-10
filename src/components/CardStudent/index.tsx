@@ -16,10 +16,10 @@ export function CardStudent({
   email,
   onOpenEditStudentModal
 }: CardStudentProps) {
-  const { deleteStudent } = useStudents();
+  const { removeStudent } = useStudents();
 
   function handleDeleteStudent(selectedId: string) {
-    deleteStudent(selectedId);
+    removeStudent(selectedId);
   }
 
   return (

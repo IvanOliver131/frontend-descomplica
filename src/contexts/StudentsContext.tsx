@@ -1,4 +1,6 @@
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { client } from "../lib/apollo";
 let allStudents: Student[] = [];
 
 interface Student {
@@ -15,7 +17,8 @@ interface StudentsProviderProps {
 interface StudentsContextData {
   students: Student[];
   editStudent: (selectedId: string, studentEdit: Student) => Promise<void>;
-  deleteStudent: (selectedId: string) => Promise<void>;
+  removeStudent: (selectedId: string) => Promise<void>;
+  addStudent: (name: string, cpf: string, email: string) => Promise<void>;
   searchStudent: (textTyped: string) => void;
 }
 
@@ -23,41 +26,89 @@ export const StudentsContext = createContext<StudentsContextData>(
   {} as StudentsContextData
 );
 
+const GET_STUDENT = gql`
+  query Query {
+    students {
+      id
+      name
+      cpf
+      email
+    }
+  }
+`;
+
+const CREATE_STUDENT = gql`
+  mutation ($name: String!, $cpf: String!, $email: String!) {
+    createStudent(name: $name, cpf: $cpf, email: $email) {
+      id
+      name
+      cpf
+      email
+    }
+  }
+`;
+
+const DELETE_STUDENT = gql`
+  mutation ($id: String!) {
+    deleteStudent(id: $id) {
+      id
+      name
+    }
+  }
+`;
+
+const UPDATE_STUDENT = gql`
+  mutation ($id: String!, $name: String!, $cpf: String!, $email: String!) {
+    updateStudent(id: $id, name: $name, cpf: $cpf, email: $email) {
+      id
+      name
+      cpf
+      email
+    }
+  }
+`;
+
 export function StudentsProvider({ children }: StudentsProviderProps) {
   const [students, setStudents] = useState<Student[]>([]);
+  const { data: dataStudents } = useQuery<{ students: Student[] }>(GET_STUDENT);
+  const [createStudent] = useMutation(CREATE_STUDENT);
+  const [deleteStudent] = useMutation(DELETE_STUDENT);
+  const [updateStudent] = useMutation(UPDATE_STUDENT);
 
   useEffect(() => {
-    const listStudents = [
-      {
-        id: "1",
-        name: "Ivan",
-        cpf: "136.070.106-09",
-        email: "ivanoliver131@gmail.com"
-      },
-      {
-        id: "2",
-        name: "Ana",
-        cpf: "136.070.106-10",
-        email: "ana@gmail.com"
-      },
-      {
-        id: "3",
-        name: "Teste",
-        cpf: "136.070.106-11",
-        email: "teste@gmail.com"
-      }
-    ];
-
+    const listStudents = dataStudents?.students ? dataStudents?.students : [];
     setStudents([...listStudents]);
     allStudents = listStudents;
-  }, []);
+  }, [dataStudents]);
 
   async function editStudent(selectedId: string, studentEdit: Student) {
-    console.log(selectedId, studentEdit);
+    await updateStudent({
+      variables: {
+        id: selectedId,
+        name: studentEdit.name,
+        cpf: studentEdit.cpf,
+        email: studentEdit.email
+      },
+      refetchQueries: [GET_STUDENT]
+    });
   }
 
-  async function deleteStudent(selectedId: string) {
-    console.log(selectedId);
+  async function removeStudent(selectedId: string) {
+    await deleteStudent({
+      variables: { id: selectedId },
+      refetchQueries: [GET_STUDENT]
+    });
+  }
+
+  async function addStudent(name: string, cpf: string, email: string) {
+    await createStudent({
+      variables: {
+        name,
+        cpf,
+        email
+      },
+      refetchQueries: [GET_STUDENT]
+    });
   }
 
   function searchStudent(textTyped: String) {
@@ -83,7 +134,8 @@ export function StudentsProvider({ children }: StudentsProviderProps) {
       value={{
         students,
         editStudent,
-        deleteStudent,
+        removeStudent,
+        addStudent,
         searchStudent
       }}
     >

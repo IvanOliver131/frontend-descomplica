@@ -1,3 +1,4 @@
+import { serializeFetchParameter } from "@apollo/client";
 import { SmileySad, Student } from "phosphor-react";
 import { useState } from "react";
 import { CardStudent } from "../../components/CardStudent";
@@ -16,14 +17,24 @@ interface Student {
 export function Home() {
   const { students } = useStudents();
   const [modalOpen, setModalOpen] = useState(false);
+  const [create, setCreate] = useState(false);
   const [studentId, setStudentId] = useState("");
 
   function handleCloseStudentModal() {
     setModalOpen(false);
   }
 
-  function handleOpenStudentModal(studentId: string) {
-    setStudentId(studentId);
+  function changeCreate() {
+    setCreate(true);
+    setModalOpen(true);
+  }
+
+  function handleOpenStudentModal(studentId?: string) {
+    setCreate(false);
+    if (studentId) {
+      setStudentId(studentId);
+    }
+
     setModalOpen(true);
   }
 
@@ -31,8 +42,11 @@ export function Home() {
     <div className="flex flex-col">
       <Header />
       <div className="w-full max-w-[1100px] mx-auto">
-        <Searchbar />
-        {students.length <= 0 ? (
+        <Searchbar
+          onOpenCreateStudentModal={handleOpenStudentModal}
+          changeCreate={changeCreate}
+        />
+        {!students || students.length <= 0 ? (
           <div className="flex items-center justify-center flex-col gap-5 mt-6 md:flex-row">
             <SmileySad size={32} />
             <span className="text-center">
@@ -60,6 +74,7 @@ export function Home() {
       <ModalStudent
         isOpen={modalOpen}
         id={studentId}
+        create={create}
         onRequestClose={handleCloseStudentModal}
       />
     </div>
