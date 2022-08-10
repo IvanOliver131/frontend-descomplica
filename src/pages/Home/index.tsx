@@ -1,5 +1,6 @@
 import { SmileySad, Student } from "phosphor-react";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { CardStudent } from "../../components/CardStudent";
 import { Header } from "../../components/Header";
 import { ModalStudentCreate } from "../../components/Modal/ModalCreate";
@@ -77,6 +78,8 @@ export function Home() {
         isOpen={modalOpenCreate}
         onRequestClose={handleCloseStudentModal}
       />
+
+      <ToastContainer />
     </div>
   );
 }
