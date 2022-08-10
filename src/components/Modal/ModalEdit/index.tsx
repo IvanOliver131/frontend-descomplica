@@ -1,7 +1,11 @@
 import { FormEvent, useEffect, useState } from "react";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 import closeImg from "../../../assets/images/close.svg";
 import { useStudents } from "../../../hooks/useStudents";
+import { cpfMask } from "../../../mask/cpfMask";
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface ModalStudentProps {
   isOpen: boolean;
@@ -38,6 +42,21 @@ export function ModalStudentEdit({
 
   async function handleEditStudent(event: FormEvent) {
     event.preventDefault();
+
+    if (!editName || !editCpf || !editEmail) {
+      return toast.warn(
+        "Desculpa :c mas parece que você deixou algum campo em branco",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        }
+      );
+    }
 
     const studentEdit = {
       id,
@@ -94,11 +113,11 @@ export function ModalStudentEdit({
           placeholder="CPF"
           className="p-3 rounded-md text-gray-700"
           value={editCpf}
-          onChange={(event) => setEditCpf(event.target.value)}
+          onChange={(event) => setEditCpf(cpfMask(event.target.value))}
         />
 
         <input
-          type="text"
+          type="email"
           placeholder="E-mail"
           className="p-3 rounded-md text-gray-700"
           value={editEmail}

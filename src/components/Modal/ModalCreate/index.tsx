@@ -2,6 +2,10 @@ import { FormEvent, useEffect, useState } from "react";
 import Modal from "react-modal";
 import closeImg from "../../../assets/images/close.svg";
 import { useStudents } from "../../../hooks/useStudents";
+import { cpfMask } from "../../../mask/cpfMask";
+import { toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface ModalStudentProps {
   isOpen: boolean;
@@ -26,6 +30,21 @@ export function ModalStudentCreate({
 
   async function handleCreateStudent(event: FormEvent) {
     event.preventDefault();
+
+    if (!createName || !createCpf || !createEmail) {
+      return toast.warn(
+        "Desculpa :c mas parece que você não preencheu todos os campos",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        }
+      );
+    }
 
     await addStudent(createName, createCpf, createEmail);
 
@@ -75,11 +94,11 @@ export function ModalStudentCreate({
           placeholder="CPF"
           className="p-3 rounded-md text-gray-700"
           value={createCpf}
-          onChange={(event) => setCreateCpf(event.target.value)}
+          onChange={(event) => setCreateCpf(cpfMask(event.target.value))}
         />
 
         <input
-          type="text"
+          type="email"
           placeholder="E-mail"
           className="p-3 rounded-md text-gray-700"
           value={createEmail}

@@ -13,7 +13,7 @@ export function Searchbar({ onOpenCreateStudentModal }: SearchbarProps) {
   }
 
   return (
-    <div className="flex">
+    <div className="block sm:flex">
       <div className="relative m-3 flex-1">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none ">
           <MagnifyingGlass color="black" size={24} />
@@ -26,7 +26,7 @@ export function Searchbar({ onOpenCreateStudentModal }: SearchbarProps) {
         />
       </div>
       <button
-        className="p-2 rounded-md bg-[#e4c61d] flex flex-row justify-center items-center gap-2 font-bold m-4"
+        className="p-2 rounded-md bg-[#e4c61d] flex flex-row justify-center items-center gap-2 font-bold w-[94%] m-auto sm:max-w-[180px] sm:mx-4"
         onClick={onOpenCreateStudentModal}
       >
         <Plus weight="bold" />
