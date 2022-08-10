@@ -93,7 +93,7 @@ export function ModalStudent({
         w-full
         m-auto"
       >
-        <h1 className="text-gray-700 font-bold text-lg">Editar Estudante</h1>
+        <h1 className="text-[#009c60] font-bold text-lg">Editar Estudante</h1>
 
         <input
           type="text"
@@ -121,7 +121,7 @@ export function ModalStudent({
 
         <button
           type="submit"
-          className="bg-gray-700 rounded-md p-3 hover:bg-gray-800"
+          className="bg-[#13bb7a] rounded-md p-3 hover:bg-[#14e092]"
         >
           Confirmar
         </button>

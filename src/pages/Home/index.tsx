@@ -48,9 +48,9 @@ export function Home() {
         />
         {!students || students.length <= 0 ? (
           <div className="flex items-center justify-center flex-col gap-5 mt-6 md:flex-row">
-            <SmileySad size={32} />
-            <span className="text-center">
-              Não conseguimos coletar informações de nenhum estudante
+            <SmileySad size={32} color="#9e8600" />
+            <span className="text-center text-[#9e8600]">
+              Não conseguimos coletar informações de nenhum estudante...
             </span>
           </div>
         ) : (

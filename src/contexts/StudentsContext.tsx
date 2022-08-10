@@ -1,6 +1,5 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { client } from "../lib/apollo";
 let allStudents: Student[] = [];
 
 interface Student {
@@ -39,7 +38,7 @@ const GET_STUDENT = gql`
 
 const CREATE_STUDENT = gql`
   mutation ($name: String!, $cpf: String!, $email: String!) {
-    createStudent(name: $name, cpf: $cpf, email: $email) {
+    createStudent(data: { name: $name, cpf: $cpf, email: $email }) {
       id
       name
       cpf
@@ -50,16 +49,13 @@ const CREATE_STUDENT = gql`
 
 const DELETE_STUDENT = gql`
   mutation ($id: String!) {
-    deleteStudent(id: $id) {
-      id
-      name
-    }
+    deleteStudent(id: $id)
   }
 `;
 
 const UPDATE_STUDENT = gql`
   mutation ($id: String!, $name: String!, $cpf: String!, $email: String!) {
-    updateStudent(id: $id, name: $name, cpf: $cpf, email: $email) {
+    updateStudent(id: $id, data: { name: $name, cpf: $cpf, email: $email }) {
       id
       name
       cpf

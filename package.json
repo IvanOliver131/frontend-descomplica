@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:up": "docker-compose up"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",

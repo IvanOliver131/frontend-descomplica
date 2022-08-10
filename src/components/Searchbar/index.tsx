@@ -30,7 +30,7 @@ export function Searchbar({
         />
       </div>
       <button
-        className="p-2 rounded-md bg-green-700 flex flex-row justify-center items-center gap-2 font-bold m-4"
+        className="p-2 rounded-md bg-[#a58f13] flex flex-row justify-center items-center gap-2 font-bold m-4"
         // onClick={onOpenCreateStudentModal}
         onClick={changeCreate}
       >
