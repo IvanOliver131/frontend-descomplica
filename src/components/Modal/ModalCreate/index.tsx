@@ -1,70 +1,37 @@
 import { FormEvent, useEffect, useState } from "react";
 import Modal from "react-modal";
-import closeImg from "../../assets/images/close.svg";
-import { useStudents } from "../../hooks/useStudents";
+import closeImg from "../../../assets/images/close.svg";
+import { useStudents } from "../../../hooks/useStudents";
 
 interface ModalStudentProps {
   isOpen: boolean;
-  id: string;
-  create: boolean;
   onRequestClose: () => void;
 }
 
-export function ModalStudent({
+export function ModalStudentCreate({
   isOpen,
-  id,
-  create,
   onRequestClose
 }: ModalStudentProps) {
-  const { students, editStudent, addStudent } = useStudents();
+  const { students, addStudent } = useStudents();
 
-  const [editName, setEditName] = useState("");
-  const [editCpf, setEditCpf] = useState("");
-  const [editEmail, setEditEmail] = useState("");
+  const [createName, setCreateName] = useState("");
+  const [createCpf, setCreateCpf] = useState("");
+  const [createEmail, setCreateEmail] = useState("");
 
   useEffect(() => {
-    setEditName("");
-    setEditCpf("");
-    setEditEmail("");
+    setCreateName("");
+    setCreateCpf("");
+    setCreateEmail("");
+  }, [students]);
 
-    if (students) {
-      for (const student of students) {
-        if (student.id === id) {
-          setEditName(student.name);
-          setEditCpf(student.cpf);
-          setEditEmail(student.email);
-        }
-      }
-    }
-  }, [id, students]);
-
-  async function handleEditOrCreateStudent(event: FormEvent) {
+  async function handleCreateStudent(event: FormEvent) {
     event.preventDefault();
 
-    if (create) {
-      addStudent(editName, editCpf, editEmail);
+    await addStudent(createName, createCpf, createEmail);
 
-      // Zero os campos antes de fechar o modal
-      setEditName("");
-      setEditCpf("");
-      setEditEmail("");
-      onRequestClose();
-
-      return;
-    }
-
-    const studentEdit = {
-      id,
-      name: editName,
-      cpf: editCpf,
-      email: editEmail
-    };
-
-    await editStudent(id, studentEdit);
-
-    setEditName("");
-    setEditCpf("");
-    setEditEmail("");
+    setCreateName("");
+    setCreateCpf("");
+    setCreateEmail("");
 
     onRequestClose();
   }
@@ -86,7 +53,7 @@ export function ModalStudent({
       </button>
 
       <form
-        onSubmit={handleEditOrCreateStudent}
+        onSubmit={handleCreateStudent}
         className="grid
         grid-cols-1
         gap-2
@@ -99,24 +66,24 @@ export function ModalStudent({
           type="text"
           placeholder="Nome"
           className="p-3 rounded-md text-gray-700"
-          value={editName}
-          onChange={(event) => setEditName(event.target.value)}
+          value={createName}
+          onChange={(event) => setCreateName(event.target.value)}
         />
 
         <input
           type="text"
           placeholder="CPF"
           className="p-3 rounded-md text-gray-700"
-          value={editCpf}
-          onChange={(event) => setEditCpf(event.target.value)}
+          value={createCpf}
+          onChange={(event) => setCreateCpf(event.target.value)}
         />
 
         <input
           type="text"
           placeholder="E-mail"
           className="p-3 rounded-md text-gray-700"
-          value={editEmail}
-          onChange={(event) => setEditEmail(event.target.value)}
+          value={createEmail}
+          onChange={(event) => setCreateEmail(event.target.value)}
         />
 
         <button

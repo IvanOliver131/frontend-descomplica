@@ -1,7 +1,11 @@
 {
   "name": "front-desafio-descomplica",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:IvanOliver131/frontend-descomplica.git",
+  "author": "Ivan Lucas de Oliveira Ribeiro <ivanoliver131@gmail.com>",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

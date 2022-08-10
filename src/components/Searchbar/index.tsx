@@ -3,13 +3,9 @@ import { useStudents } from "../../hooks/useStudents";
 
 interface SearchbarProps {
   onOpenCreateStudentModal: () => void;
-  changeCreate: () => void;
 }
 
-export function Searchbar({
-  onOpenCreateStudentModal,
-  changeCreate
-}: SearchbarProps) {
+export function Searchbar({ onOpenCreateStudentModal }: SearchbarProps) {
   const { searchStudent } = useStudents();
 
   function handleSearchStudent(textTyped: string) {
@@ -30,9 +26,8 @@ export function Searchbar({
         />
       </div>
       <button
-        className="p-2 rounded-md bg-[#a58f13] flex flex-row justify-center items-center gap-2 font-bold m-4"
-        // onClick={onOpenCreateStudentModal}
-        onClick={changeCreate}
+        className="p-2 rounded-md bg-[#e4c61d] flex flex-row justify-center items-center gap-2 font-bold m-4"
+        onClick={onOpenCreateStudentModal}
       >
         <Plus weight="bold" />
         Criar Estudante

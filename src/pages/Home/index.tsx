@@ -1,9 +1,9 @@
-import { serializeFetchParameter } from "@apollo/client";
 import { SmileySad, Student } from "phosphor-react";
 import { useState } from "react";
 import { CardStudent } from "../../components/CardStudent";
 import { Header } from "../../components/Header";
-import { ModalStudent } from "../../components/Modal";
+import { ModalStudentCreate } from "../../components/Modal/ModalCreate";
+import { ModalStudentEdit } from "../../components/Modal/ModalEdit";
 import { Searchbar } from "../../components/Searchbar";
 import { useStudents } from "../../hooks/useStudents";
 
@@ -16,36 +16,32 @@ interface Student {
 
 export function Home() {
   const { students } = useStudents();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [create, setCreate] = useState(false);
+  const [modalOpenEdit, setModalOpenEdit] = useState(false);
+  const [modalOpenCreate, setModalOpenCreate] = useState(false);
   const [studentId, setStudentId] = useState("");
 
   function handleCloseStudentModal() {
-    setModalOpen(false);
+    setModalOpenEdit(false);
+    setModalOpenCreate(false);
   }
 
-  function changeCreate() {
-    setCreate(true);
-    setModalOpen(true);
+  function handleOpenStudentModalCreate() {
+    setModalOpenCreate(true);
   }
 
   function handleOpenStudentModal(studentId?: string) {
-    setCreate(false);
     if (studentId) {
       setStudentId(studentId);
     }
 
-    setModalOpen(true);
+    setModalOpenEdit(true);
   }
 
   return (
     <div className="flex flex-col">
       <Header />
       <div className="w-full max-w-[1100px] mx-auto">
-        <Searchbar
-          onOpenCreateStudentModal={handleOpenStudentModal}
-          changeCreate={changeCreate}
-        />
+        <Searchbar onOpenCreateStudentModal={handleOpenStudentModalCreate} />
         {!students || students.length <= 0 ? (
           <div className="flex items-center justify-center flex-col gap-5 mt-6 md:flex-row">
             <SmileySad size={32} color="#9e8600" />
@@ -71,10 +67,14 @@ export function Home() {
         )}
       </div>
 
-      <ModalStudent
-        isOpen={modalOpen}
+      <ModalStudentEdit
+        isOpen={modalOpenEdit}
         id={studentId}
-        create={create}
+        onRequestClose={handleCloseStudentModal}
+      />
+
+      <ModalStudentCreate
+        isOpen={modalOpenCreate}
         onRequestClose={handleCloseStudentModal}
       />
     </div>
