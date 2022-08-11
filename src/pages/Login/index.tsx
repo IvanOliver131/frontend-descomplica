@@ -38,19 +38,19 @@ export function Login() {
 
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center bg-black">
-      <div className="w-full max-w-[1100px] flex items-center flex-col justify-between mt-20 mx-auto md:flex-row gap-5">
+      <div className="w-full max-w-[1100px] flex items-center flex-col justify-between mt-0 mx-auto md:flex-row gap-5 md:mt-20">
         <div className="max-w-[640px] flex items-center justify-center flex-col p-5 md:p-0 md:block md:m-4">
           <h1 className="m-8 text-[2.5rem] leading-tight text-[#585858] text-center  ">
             Teste Engenheiro de Software Fullstack Jr -
             <strong className="text-[#00e88f]"> DESCOMPLICA</strong> utilizando
             <strong className="text-gray-300"> React ⚛</strong>
           </h1>
-          <p className="m-4  text-[#00e88f] leading-relaxed text-[1.5rem] text-center md:m-4">
-            Obrigado pela oportunidade!
-          </p>
+          <span className="m-2 text-[#00e88f] leading-relaxed text-[1.5rem] text-center md:m-4">
+            Obrigado pela oportunidade! 😁
+          </span>
         </div>
 
-        <div className="p-8 bg-[#333333] border border-gray-500  rounded md:m-3 md:w-[600px]">
+        <div className="p-8 bg-[#333333] border border-gray-500 rounded md:m-3 md:w-[600px]">
           <header className="w-full py-5 flex justify-center bg-[#333333] border-b border-gray-600">
             <Logo />
             <span className="font-bold ml-1">
