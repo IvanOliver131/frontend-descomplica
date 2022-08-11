@@ -23,7 +23,7 @@ export function CardStudent({
   }
 
   return (
-    <div className="m-2 rounded-md p-4 bg-white flex flex-col min-w-[290px] border-none">
+    <div className="m-2 rounded-md p-4 bg-white flex flex-col min-w-[280px] border-none">
       <header className="flex gap-2">
         <h1 className="text-[#009c60]">Nome:</h1>
         <span className="text-black">{name}</span>

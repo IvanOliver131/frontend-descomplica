@@ -16,12 +16,12 @@ export function Header() {
         <span className="font-bold ml-1 text-[#FFD700]">.</span>
       </span>
 
-      <div className="fixed right-8 top-3">
+      <div className="absolute right-8 top-4">
         <button
           className="flex flex-row items-center justify-center gap-1"
           onClick={logout}
         >
-          <SignOut size={36} />
+          <SignOut size={32} />
           <span className="hidden md:block">Sair</span>
         </button>
       </div>
