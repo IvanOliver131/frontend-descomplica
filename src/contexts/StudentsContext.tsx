@@ -159,9 +159,9 @@ export function StudentsProvider({ children }: StudentsProviderProps) {
 
     for (const student of allStudents) {
       if (
-        student.name.toLowerCase().match(textSearch) ||
+        student.name.match(textSearch) ||
         student.cpf.match(textSearch) ||
-        student.email.toLowerCase().match(textSearch)
+        student.email.match(textSearch)
       ) {
         foundedStudents.push(student);
       } else {
