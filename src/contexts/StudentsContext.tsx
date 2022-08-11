@@ -1,6 +1,9 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 let allStudents: Student[] = [];
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface Student {
   id: string;
@@ -78,44 +81,87 @@ export function StudentsProvider({ children }: StudentsProviderProps) {
   }, [dataStudents]);
 
   async function editStudent(selectedId: string, studentEdit: Student) {
-    await updateStudent({
-      variables: {
-        id: selectedId,
-        name: studentEdit.name,
-        cpf: studentEdit.cpf,
-        email: studentEdit.email
-      },
-      refetchQueries: [GET_STUDENT]
-    });
+    try {
+      await updateStudent({
+        variables: {
+          id: selectedId,
+          name: studentEdit.name,
+          cpf: studentEdit.cpf,
+          email: studentEdit.email
+        },
+        refetchQueries: [GET_STUDENT]
+      });
+    } catch (error) {
+      toast.error(
+        "Desculpa 🙁 certifique-se de que está editando os campos da maneira correta como, CPF e E-mail único!",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        }
+      );
+    }
   }
 
   async function removeStudent(selectedId: string) {
-    await deleteStudent({
-      variables: { id: selectedId },
-      refetchQueries: [GET_STUDENT]
-    });
+    try {
+      await deleteStudent({
+        variables: { id: selectedId },
+        refetchQueries: [GET_STUDENT]
+      });
+    } catch (error) {
+      toast.error("Desculpa 🙁 Houve uma certa instabilidade no sistema", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+    }
   }
 
   async function addStudent(name: string, cpf: string, email: string) {
-    await createStudent({
-      variables: {
-        name,
-        cpf,
-        email
-      },
-      refetchQueries: [GET_STUDENT]
-    });
+    try {
+      await createStudent({
+        variables: {
+          name,
+          cpf,
+          email
+        },
+        refetchQueries: [GET_STUDENT]
+      });
+    } catch (error) {
+      toast.error(
+        "Desculpa 🙁 certifique-se de que está colocando os campos corretos como, CPF e E-mail único!",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        }
+      );
+    }
   }
 
   function searchStudent(textTyped: String) {
     const foundedStudents: Student[] = [];
-    const textSearch = new RegExp(textTyped.toLowerCase(), "g");
+    const textTypedRegex = `${textTyped}`;
+    const textSearch = new RegExp(textTypedRegex, "g");
 
     for (const student of allStudents) {
       if (
-        student.name.match(textSearch) ||
+        student.name.toLowerCase().match(textSearch) ||
         student.cpf.match(textSearch) ||
-        student.email.match(textSearch)
+        student.email.toLowerCase().match(textSearch)
       ) {
         foundedStudents.push(student);
       } else {
@@ -123,6 +169,22 @@ export function StudentsProvider({ children }: StudentsProviderProps) {
       }
     }
     setStudents(foundedStudents);
+
+    // const foundedStudents: Student[] = [];
+    // const textSearch = new RegExp(textTyped.toLowerCase(), "g");
+
+    // for (const student of allStudents) {
+    //   if (
+    //     student.name.match(textSearch) ||
+    //     student.cpf.match(textSearch) ||
+    //     student.email.match(textSearch)
+    //   ) {
+    //     foundedStudents.push(student);
+    //   } else {
+    //     setStudents(allStudents);
+    //   }
+    // }
+    // setStudents(foundedStudents);
   }
 
   return (

@@ -7,6 +7,7 @@ import { ModalStudentCreate } from "../../components/Modal/ModalCreate";
 import { ModalStudentEdit } from "../../components/Modal/ModalEdit";
 import { Searchbar } from "../../components/Searchbar";
 import { useStudents } from "../../hooks/useStudents";
+import ReactLoading from "react-loading";
 
 interface Student {
   id: string;
@@ -45,6 +46,12 @@ export function Home() {
         <Searchbar onOpenCreateStudentModal={handleOpenStudentModalCreate} />
         {!students || students.length <= 0 ? (
           <div className="flex items-center justify-center flex-col gap-5 mt-6 md:flex-row">
+            <ReactLoading
+              type={"bubbles"}
+              color={"#675700"}
+              height={67}
+              width={67}
+            />
             <SmileySad size={32} color="#9e8600" />
             <span className="text-center text-[#9e8600]">
               Não conseguimos coletar informações de nenhum estudante...

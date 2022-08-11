@@ -19,6 +19,10 @@
 
 ### 0. Configure o arquivo .env com as credenciais que você ira utilizar ⚙
 
+## \* E-MAIL: descomplica@descomplica.com
+
+## \* PASSWORD: passeinoteste
+
 ### 1. Primeiro de tudo devemos instalar todas as dependências utilizando
 
 ```
@@ -28,7 +32,7 @@ yarn
 ou
 
 ```
-npm
+npm i
 ```
 
 ### 2. Após instalar as depências devemos rodar o seguinte comando, que irá ser responsável por subir um container responsável por rodar nossa aplicação
@@ -40,10 +44,10 @@ yarn docker:up
 ou
 
 ```
-npm run docker:up
+npm docker:up
 ```
 
-### 3. Caso queira rodar o projeto no terminal, basta executar o comando abaixo 
+### 3. Caso queira rodar o projeto no terminal, basta executar o comando abaixo
 
 ```
 yarn dev
@@ -52,11 +56,10 @@ yarn dev
 ou
 
 ```
-npm run dev
+npm dev
 ```
 
-
-## Como rodar os testes 🧪⚙
+## !Desenvolvimento! Como rodar os testes 🧪⚙
 
 ### 1. Para rodar os testes basta utilizar o seguinte comando
 
@@ -67,7 +70,5 @@ yarn test
 ou
 
 ```
-npm run test
+npm test
 ```
-
-
