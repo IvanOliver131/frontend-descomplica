@@ -45,7 +45,7 @@ export function ModalStudentEdit({
 
     if (!editName || !editCpf || !editEmail) {
       return toast.warn(
-        "Desculpa :c mas parece que você deixou algum campo em branco",
+        "Desculpa 🙁 mas parece que você deixou algum campo em branco",
         {
           position: "top-center",
           autoClose: 5000,

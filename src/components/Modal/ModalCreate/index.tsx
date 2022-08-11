@@ -33,7 +33,7 @@ export function ModalStudentCreate({
 
     if (!createName || !createCpf || !createEmail) {
       return toast.warn(
-        "Desculpa :c mas parece que você não preencheu todos os campos",
+        "Desculpa 🙁 mas parece que você não preencheu todos os campos",
         {
           position: "top-center",
           autoClose: 5000,
