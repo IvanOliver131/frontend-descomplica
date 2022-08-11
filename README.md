@@ -6,8 +6,6 @@
 ![image](https://user-images.githubusercontent.com/62350674/183996742-6c2fa00c-a40a-48a1-9c14-9d3e61529367.png)
 ![image](https://user-images.githubusercontent.com/62350674/183996782-594027d2-ae45-40cd-a7fb-f1c454a66cdc.png)
 
-# backend-descomplica
-
 ## Ferramentas utilizadas ✨⚙🛠
 
 <div style="display: inline_block"><br>
@@ -16,6 +14,7 @@
   <img align="center" alt="Ivan-NodeJs" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
   <img align="center" alt="Ivan-React" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
   <img align="center" alt="Ivan-Tailwind" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg">
+  <img align="center" alt="Ivan-Docker" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
 </div>
 
 ## Como rodar a aplicação 🚀🔥
