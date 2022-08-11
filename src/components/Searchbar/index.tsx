@@ -20,13 +20,13 @@ export function Searchbar({ onOpenCreateStudentModal }: SearchbarProps) {
         </div>
         <input
           type="search"
-          className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-pink-500 focus:pink-blue-500 "
+          className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-none focus:ring-[#333333] focus:pink-gray-500 "
           placeholder="Pesquisar alunos..."
           onKeyUp={(event: any) => handleSearchStudent(event.target.value)}
         />
       </div>
       <button
-        className="p-2 rounded-md bg-[#e4c61d] flex flex-row justify-center items-center gap-2 font-bold w-[94%] m-auto sm:max-w-[180px] sm:mx-4"
+        className="p-2 rounded-md bg-[#333333] flex flex-row justify-center items-center gap-2 font-bold w-[94%] m-auto sm:max-w-[180px] sm:mx-4"
         onClick={onOpenCreateStudentModal}
       >
         <Plus weight="bold" />

@@ -79,7 +79,7 @@ export function ModalStudentCreate({
         w-full
         m-auto"
       >
-        <h1 className="text-[#009c60] font-bold text-lg">Editar Estudante</h1>
+        <h1 className="text-[#009c60] font-bold text-lg">Criar Estudante</h1>
 
         <input
           type="text"
