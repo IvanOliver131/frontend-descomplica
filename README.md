@@ -61,6 +61,12 @@ ou
 npm dev
 ```
 
+## Como publicar 🚀
+
+Basta entrar no site da vercel criar um conta, selecionar o repositorio, configurar as variáveis de ambiente e pronto! Sua aplicação está no ar 🔥✨
+
+https://vercel.com/dashboard
+
 ## !Desenvolvimento! Como rodar os testes 🧪⚙
 
 ### 1. Para rodar os testes basta utilizar o seguinte comando
