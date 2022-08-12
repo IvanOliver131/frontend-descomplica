@@ -1,8 +1,10 @@
 # frontend-descomplica
 
-![image](https://user-images.githubusercontent.com/62350674/183996716-d2a21b16-34a8-4c83-84c6-77285f5a4c48.png)
-![image](https://user-images.githubusercontent.com/62350674/183996742-6c2fa00c-a40a-48a1-9c14-9d3e61529367.png)
-![image](https://user-images.githubusercontent.com/62350674/183996782-594027d2-ae45-40cd-a7fb-f1c454a66cdc.png)
+![image](https://user-images.githubusercontent.com/62350674/184344670-61b605a3-2690-42de-baab-bb54ecdc8ac7.png)
+![image](https://user-images.githubusercontent.com/62350674/184344780-94b4e967-9139-428c-bc82-ac64309ccc60.png)
+![image](https://user-images.githubusercontent.com/62350674/184344840-6a2d13e7-d2c0-4d22-8dc8-c5dec752317b.png)
+![image](https://user-images.githubusercontent.com/62350674/184344945-0f94e88f-95e5-42cb-ae0c-843b994d1f1b.png)
+![image](https://user-images.githubusercontent.com/62350674/184344884-8a49c00c-d65b-4bde-93ba-b26a7f1f51fb.png)
 
 ## Ferramentas utilizadas ✨⚙🛠
 
@@ -19,9 +21,9 @@
 
 ### 0. Configure o arquivo .env com as credenciais que você ira utilizar ⚙
 
-## \* E-MAIL: descomplica@descomplica.com
+<b>*E-MAIL:</b> descomplica@descomplica.com
 
-## \* PASSWORD: passeinoteste
+<b>* PASSWORD:</b> passeinoteste
 
 ### 1. Primeiro de tudo devemos instalar todas as dependências utilizando
 
